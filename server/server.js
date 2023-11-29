@@ -28,7 +28,8 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/login', (req, res) =>
-  res.status(200).sendFile(path.resolve(__dirname, '../login.html')))
+  res.status(200).sendFile(path.resolve(__dirname, '../login.html'))
+);
 
 app.use('/api/', apiRouter);
 app.use('/reviews/', reviewRouter);
