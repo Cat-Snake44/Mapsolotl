@@ -3,6 +3,7 @@ import zipCache from '../data/zipcodes.js';
 import { useDispatch } from 'react-redux';
 import ListContainer from './ListContainer.jsx';
 import { DISPLAY_SEARCH } from '../reducers/reducer.js';
+import Header from '../components/Header.jsx';
 
 // adding to url
 // api needs latitude and longitude so we are using zipCache to convert zip to lat/long
@@ -23,15 +24,15 @@ const App = () => {
         })
     );
 
-    const result = await response.json(); 
+    const result = await response.json();
     console.log('result is' + result);
     dispatch(DISPLAY_SEARCH(result)); //dispatches data to DISPLAY_SEARCH reducer
   }
 
-  
   return (
     <div className='App'>
       <div className='search-container'>
+        <Header />
         <h1>GET BUSY BIKING OR GET BUSY DOING SOMETHING ELSE</h1>
         <div className='inputs'>
           <label htmlFor='zip'>ZIP CODE: </label>
@@ -42,22 +43,6 @@ const App = () => {
             id='zip'
             placeholder='Ex: 48912'
           ></input>
-          
-          {/* get rid of lat and long? */}
-          {/* <label htmlFor='lat'>LATITUDE: </label>
-          <input
-            name='lat'
-            type='text'
-            id='lat'
-            placeholder='Optional'
-          ></input>
-          <label htmlFor='long'>LONGITUDE: </label>
-          <input
-            name='lon'
-            type='text'
-            id='long'
-            placeholder='Optional'
-          ></input> */}
           <label htmlFor='radius'>MILE RADIUS: </label>
           <input
             name='radius'
