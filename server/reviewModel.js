@@ -14,7 +14,7 @@ const reviewSchema = new Schema({
   trailId: { type: Number, required: true },
   review: {
     userName: { type: String, required: true },
-    text: { type: String, required: true, maxlength: 30 },
+    text: { type: String, required: true },
   },
 });
 

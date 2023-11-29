@@ -9,9 +9,9 @@ const ListContainer = () => {
   async function infoClick(id) {
     const response = await fetch(
       '/api/info?' +
-        new URLSearchParams({
-          id: id,
-        })
+      new URLSearchParams({
+        id: id,
+      })
     );
 
     const result = await response.json();
