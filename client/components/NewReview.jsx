@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { REVIEW_WAS_POSTED_TRUE } from '../reducers/reviewReducers';
 
 const NewReview = (props) => {
+  const { reviewPosted } = useSelector((state) => state.reviews)
+  const dispatch = useDispatch();
 
   function handlePostReview() {
-    const reviewText = document.getElementById('reviewText').value;
-    const reviewUser = document.getElementById('reviewUser').value;
+    const reviewText = document.getElementById('reviewText');
+    const reviewUser = document.getElementById('reviewUser');
     // console.log('req body i think: ', { userName: reviewUser, text: reviewText })
     // console.log('id', props.id);
     fetch(`http://localhost:3000/reviews/${props.id}`, {
       method: 'POST',
       body: JSON.stringify({
         trailId: props.id,
-        review: { userName: reviewUser, text: reviewText }
+        review: { userName: reviewUser.value, text: reviewText.value }
       }),
       headers: { 'Content-type': 'application/json' },
     })
-    // .then(() => {
-    //   dispatch(newReviewPostedTrue)
-    // })
+      .then(() => {
+
+        //clear input fields
+        reviewText.value = '';
+        reviewText.placeholder = 'Type your review here...';
+        reviewUser.value = '';
+
+        //tell store that review was posted so review list can update
+        dispatch(REVIEW_WAS_POSTED_TRUE());
+      });
   }
 
   return (
