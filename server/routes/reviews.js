@@ -13,7 +13,7 @@ router.post("/:id", reviewController.createReview, (req, res) =>
 
 //Get reviews from a specific trail
 router.get("/:id", reviewController.getReviews, (req, res) =>
-  res.status(200).send(res.locals.reviews)
+  res.status(200).json(res.locals.reviews)
 );
 
 //Update review

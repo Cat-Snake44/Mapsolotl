@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const cors = require('cors');
 
 const apiRouter = require('./routes/api');
 const reviewRouter = require('./routes/reviews');
 const userRouter = require('./routes/user');
+
+// Enable CORS for all requests/responses
+app.use(cors());
 
 // Body parser middleware for JSON data
 app.use(express.json());
@@ -23,8 +27,8 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../signup.html'));
 });
 
-app.get('/login',(req,res) => 
-res.status(200).sendFile(path.resolve(__dirname, '../login.html')))
+app.get('/login', (req, res) =>
+  res.status(200).sendFile(path.resolve(__dirname, '../login.html')))
 
 app.use('/api/', apiRouter);
 app.use('/reviews/', reviewRouter);
