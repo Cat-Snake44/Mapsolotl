@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { REVIEW_WAS_POSTED_FALSE } from '../reducers/reviewReducers';
 
 const ReviewsList = (props) => {
 
   const [reviews, setReviews] = useState([]); //state to hold reviews
-  const { isNewReviewPosted, setIsNewReviewPosted } = useState(false);
-
+  const { reviewPosted } = useSelector((state) => state.reviews)
+  const dispatch = useDispatch();
 
   async function getReviews() {
     let newReviews = [];
@@ -29,14 +30,16 @@ const ReviewsList = (props) => {
     setReviews(newReviews);
   }
 
+  // load current reviews on intial render
   useEffect(() => {
     getReviews();
-  }, [])
+  }, []);
 
-  // useEffect(() => {
-  //   getReviews();
-  //   dispatch(setIsNewReviewPosted(false));
-  // }, isNewReviewPosted)
+  // load reviews again when new review is posted and reset state in store tracking whether review was posted
+  useEffect(() => {
+    getReviews();
+    dispatch(REVIEW_WAS_POSTED_FALSE());
+  }, [reviewPosted]);
 
   return (
     <div>

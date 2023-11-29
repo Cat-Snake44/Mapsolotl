@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import MoreInfo from './MoreInfo.jsx';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
 
+
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
   const dispatch = useDispatch();

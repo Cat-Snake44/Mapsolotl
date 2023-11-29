@@ -24,3 +24,5 @@ const slice = createSlice({
 
 export const { DISPLAY_SEARCH, DISPLAY_MORE_INFO } = slice.actions;
 export default slice.reducer;
+
+

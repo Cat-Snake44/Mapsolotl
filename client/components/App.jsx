@@ -25,6 +25,7 @@ const App = () => {
     );
 
     const result = await response.json();
+    const result = await response.json();
     console.log('result is' + result);
     dispatch(DISPLAY_SEARCH(result)); //dispatches data to DISPLAY_SEARCH reducer
   }
