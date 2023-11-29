@@ -5,16 +5,16 @@ const User = require("../userModel");
 //Create a new review
 reviewController.createReview = async (req, res, next) => {
   try {
-    const { review } = req.body;
-    const { userName, text } = review
-      const newReview = await Review.create({ 
-        trailId: req.params.id, 
-        review:  { userName, text}
-      });
-      res.locals.saveReview = newReview;
-      console.log("newReview: ", newReview);
-      return next();
-    
+    const userName = req.body.review.userName;
+    const text = req.body.review.text;
+    const newReview = await Review.create({
+      trailId: req.params.id,
+      review: { userName, text }
+    });
+    res.locals.saveReview = newReview;
+    console.log("newReview: ", newReview);
+    return next();
+
   } catch (err) {
     return next({
       log: `Express error handler caught in reviewController.createReview: ${err} `,
@@ -29,11 +29,12 @@ reviewController.getReviews = async (req, res, next) => {
   try {
     const response = await Review.find({ trailId: req.params.id });
     if (response) {
-      const reviewsWithId = response.map(reviewDoc => ({
-        _id: reviewDoc._id,
-        review: reviewDoc.review
-      }));
-      console.log("all reviews: ", reviewsWithId);
+      // const reviewsWithId = response.map(reviewDoc => ({
+      //   _id: reviewDoc._id,
+      //   review: reviewDoc.review
+      // }));
+      console.log('response back end: ', response);
+      res.locals.reviews = response;
       return next();
     } else {
       return next({
@@ -84,32 +85,32 @@ reviewController.updateReview = async (req, res, next) => {
 
 //delete review
 reviewController.deleteReview = async (req, res, next) => {
-    try {
-      const { review } = req.body;
-      const updatedReview = await Review.deleteOne(
-        { trailId: req.params.id },
-        { review },
-        { new: true }
-      );
-  
-      if (updatedReview) {
-        res.locals.updatedReview = updatedReview;
-        return next();
-      } else {
-        return next({
-          log: `Express error handler caught in reviewController.getReviews: review not found `,
-          status: 400,
-          message: { err: "review not found" },
-        });
-      }
-    } catch (err) {
+  try {
+    const { review } = req.body;
+    const updatedReview = await Review.deleteOne(
+      { trailId: req.params.id },
+      { review },
+      { new: true }
+    );
+
+    if (updatedReview) {
+      res.locals.updatedReview = updatedReview;
+      return next();
+    } else {
       return next({
-        log: `Express error handler caught in reviewController.getReviews: ${err} `,
+        log: `Express error handler caught in reviewController.getReviews: review not found `,
         status: 400,
-        message: { err: "error occured while getting reviews" },
+        message: { err: "review not found" },
       });
     }
-  };
+  } catch (err) {
+    return next({
+      log: `Express error handler caught in reviewController.getReviews: ${err} `,
+      status: 400,
+      message: { err: "error occured while getting reviews" },
+    });
+  }
+};
 module.exports = reviewController;
 
 
