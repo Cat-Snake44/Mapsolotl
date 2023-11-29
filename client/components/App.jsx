@@ -12,23 +12,23 @@ const App = () => {
     // sent as get request to server, fetch made by middleware
     const response = await fetch(
       '/api/trails?' +
-        new URLSearchParams({
-          lat:
-            zipCache[document.getElementById('zip').value].latitude || //gets value from lat input text box on click
-            document.getElementById('lat').value,
-          lon:
-            zipCache[document.getElementById('zip').value].longitude || //gets value from long input text box on click
-            document.getElementById('long').value,
-          radius: document.getElementById('radius').value, //gets value from radius input text box on click
-        })
+      new URLSearchParams({
+        lat:
+          zipCache[document.getElementById('zip').value].latitude || //gets value from lat input text box on click
+          document.getElementById('lat').value,
+        lon:
+          zipCache[document.getElementById('zip').value].longitude || //gets value from long input text box on click
+          document.getElementById('long').value,
+        radius: document.getElementById('radius').value, //gets value from radius input text box on click
+      })
     );
 
-    const result = await response.json(); 
+    const result = await response.json();
     console.log('result is' + result);
     dispatch(DISPLAY_SEARCH(result)); //dispatches data to DISPLAY_SEARCH reducer
   }
 
-  
+
   return (
     <div className='App'>
       <div className='search-container'>
@@ -42,7 +42,7 @@ const App = () => {
             id='zip'
             placeholder='Ex: 48912'
           ></input>
-          
+
           {/* get rid of lat and long? */}
           {/* <label htmlFor='lat'>LATITUDE: </label>
           <input
