@@ -6,6 +6,13 @@ import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+    dispatch()
+  })
+
   async function infoClick(id) {
     const response = await fetch(
       '/api/info?' +

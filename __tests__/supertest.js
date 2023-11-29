@@ -13,3 +13,16 @@ describe('Route integration', () => {
     });
   });
 });
+
+describe('Route integration', () => {
+  describe('/', () => {
+    describe('GET', () => {
+      it('', () => {
+        return request('http://localhost:3000')
+          .get('/')
+          .expect(200)
+          .expect('Content-Type', /text\/html/);
+      });
+    });
+  });
+});
