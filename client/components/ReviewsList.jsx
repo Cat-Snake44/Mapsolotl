@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { REVIEW_WAS_POSTED_FALSE } from '../reducers/reviewReducers';
+import AddPhotos from './AddPhotos.jsx';
 
 const ReviewsList = (props) => {
   const [reviews, setReviews] = useState([]); //state to hold reviews
@@ -22,6 +23,9 @@ const ReviewsList = (props) => {
             <span style={{ fontWeight: '200' }}>says...</span>
           </dt>
           <dd style={{ fontWeight: '200' }}>{reviewObj.review.text}</dd>
+          <dd>
+            <AddPhotos />
+          </dd>
         </dl>
       );
     });
