@@ -29,14 +29,13 @@ describe('trail Mix', () => {
   });
 });
 
-
-describe('GET /users', function() {
-  it('responds with json', async function() {
+describe('GET /users', function () {
+  it('responds with json', async function () {
     const response = await request(local3000)
       .get('/api/trails?lat=33.573244&lon=-112.245852&radius=50')
-      .set('Accept', 'application/json')
+      .set('Accept', 'application/json');
     //expect(response.headers["Content-Type"]).toMatch(/json/);
     expect(response.status).toEqual(200);
-    expect(response.body.data).toBeInstanceOf(Array)
+    expect(response.body.data).toBeInstanceOf(Array);
   }, 15000);
 });

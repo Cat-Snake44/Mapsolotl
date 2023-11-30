@@ -14,7 +14,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(gif|png|jpe?g|svg)$/i,
+        test: /\.(png|jpe?g|svg)$/i,
         use: [
           'file-loader',
           {
@@ -37,6 +37,20 @@ module.exports = {
       {
         test: /\.s?css/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jp?g|gif)$/i,
+        include: /assets/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/',
+              publicPath: 'images/',
+            },
+          },
+        ],
       },
     ],
   },

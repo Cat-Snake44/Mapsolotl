@@ -2,17 +2,19 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MoreInfo from './MoreInfo.jsx';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
-
+import gif from '../assets/giphydogbike.gif';
 
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
   const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store.load.isLoading);
+
   async function infoClick(id) {
     const response = await fetch(
       '/api/info?' +
-      new URLSearchParams({
-        id: id,
-      })
+        new URLSearchParams({
+          id: id,
+        })
     );
 
     const result = await response.json();
@@ -24,10 +26,7 @@ const ListContainer = () => {
   // for (let listState[i] of listState) {
   for (let i = 0; i < listState.length; i++) {
     array.push(
-      <div
-        className='list-of-trails'
-        key={i}
-      >
+      <div className='list-of-trails' key={i}>
         <h1>{listState[i].name}</h1>
         <div className='location'>
           <h3>
@@ -69,6 +68,7 @@ const ListContainer = () => {
         </div>
 
         <button
+          className='button'
           onClick={() => {
             console.log(listState[i].id);
             infoClick(listState[i].id);
@@ -83,7 +83,17 @@ const ListContainer = () => {
   //name, location, option to expand
   // get location data from API and push into listItems
 
-  return <div className='listcontainer'>{array}</div>;
+  return (
+    <div className='listcontainer'>
+      {isLoading ? (
+        <div>
+          <img src={gif}></img>
+        </div>
+      ) : (
+        <div>{array}</div>
+      )}
+    </div>
+  );
 };
 
 export default ListContainer;
