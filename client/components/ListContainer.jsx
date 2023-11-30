@@ -68,6 +68,7 @@ const ListContainer = () => {
         </div>
 
         <button
+          className='button'
           onClick={() => {
             console.log(listState[i].id);
             infoClick(listState[i].id);

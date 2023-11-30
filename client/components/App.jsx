@@ -35,12 +35,10 @@ const App = () => {
 
   return (
     <div className='App'>
-      <div className='search-container'>
-        <Header />
-        <h1>GET BUSY BIKING OR GET BUSY DOING SOMETHING ELSE</h1>
+      <Header />
+      <div className='header-search-container'>
         <div className='inputs'>
           <label htmlFor='zip'>ZIP CODE: </label>
-
           <input
             className='input '
             name='zip'
@@ -63,6 +61,9 @@ const App = () => {
           >
             SUBMIT
           </button>
+          <a href='./login' id='loginButton'>
+            LOGIN
+          </a>
         </div>
       </div>
 
