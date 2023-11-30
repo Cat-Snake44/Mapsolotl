@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MoreInfo from './MoreInfo.jsx';
 import { DISPLAY_MORE_INFO } from '../reducers/reducer.js';
-import cat from '../assets/catSnake.jpeg';
+import gif from '../assets/giphydogbike.gif';
 
 const ListContainer = () => {
   const listState = useSelector((store) => store.list.listTrails);
@@ -87,7 +87,7 @@ const ListContainer = () => {
     <div className='listcontainer'>
       {isLoading ? (
         <div>
-          <img src={cat}></img>Loading...
+          <img src={gif}></img>
         </div>
       ) : (
         <div>{array}</div>

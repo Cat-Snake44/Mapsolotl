@@ -35,8 +35,10 @@ const App = () => {
 
   return (
     <div className='App'>
-      <Header />
-      <div className='header-search-container'>
+      <div className='main-container'>
+        <Header />
+      </div>
+      <div className='main-container'>
         <div className='inputs'>
           <label htmlFor='zip'>ZIP CODE: </label>
           <input
@@ -61,9 +63,9 @@ const App = () => {
           >
             SUBMIT
           </button>
-          <a href='./login' id='loginButton'>
+          {/* <a href='./login' className='loginButton'>
             LOGIN
-          </a>
+          </a> */}
         </div>
       </div>
 
