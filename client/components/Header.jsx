@@ -3,14 +3,14 @@ import cat from '../assets/catSnake.jpeg';
 
 const Header = () => {
   return (
-    <div class='header'>
-      <div class='sub-header'>
+    <div className='header'>
+      <div className='sub-header'>
         <h1>
           <img src={cat}></img>
           Cat<span> Snake</span>
         </h1>
       </div>
-      <div class='nav-container'>
+      <div className='nav-container'>
         <button>
           <a href='./login'>LOGIN</a>
         </button>

@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = { isLoading: true };
+const initialState = { isLoading: false };
 
 const loadSlice = createSlice({
   name: 'loaderSlice',
   initialState: initialState,
   reducers: {
     IS_LOADING_TRUE: (state, action) => {
-      console.log('REVIEW_WAS_POSTED_TRUE triggered'), (state.isLoading = true);
+      console.log('IS_LOADING_TRUE triggered');
+      state.isLoading = true;
     },
     IS_LOADING_FALSE: (state, action) => {
-      console.log('REVIEW_WAS_POSTED_FALSE triggered');
+      console.log('IS_LOADING_FALSE triggered');
       state.isLoading = false;
     },
   },

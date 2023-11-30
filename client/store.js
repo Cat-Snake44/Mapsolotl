@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import slice from './reducers/reducer.js';
-import reviewSlice from './reducers/reviewReducers.js'
+import reviewSlice from './reducers/reviewReducers.js';
+import loadSlice from './reducers/loadingReducer.js';
 
 export const store = configureStore({
   reducer: {
     list: slice,
-    reviews: reviewSlice
+    reviews: reviewSlice,
+    load: loadSlice,
   },
 });
 
